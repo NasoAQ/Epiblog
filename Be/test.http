@@ -1,0 +1,74 @@
+GET http://localhost:5050
+
+####
+
+GET http://localhost:5050/posts
+
+####
+POST http://localhost:5050/posts/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "category": "Spaziale",
+    "title": "Backend to the future",
+    "readTime": {
+        "value": 666,
+        "unit": "views"
+    },
+    "author":{
+        "name":"Gabriele Naso"
+        },
+    "content": "Favoloso!!!!!"
+}
+
+####
+PATCH http://localhost:5050/posts/update/651706bb28ac97fe58a536a7
+Content-Type: application/json
+
+{
+    "category": "Spaziale modificato",
+    "title": "Backend to the future",
+    "readTime": {
+        "value": 700,
+        "unit": "views"
+    },
+    "content": "Favoloso!!!!!"
+}
+
+####
+DELETE http://localhost:5050/posts/delete/651706bb28ac97fe58a536a7
+
+####
+POST http://localhost:5050/authors HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome":"Gabriele",
+    "cognome":"Naso",
+    "dataDiNascita": "2009-04-06",
+    "email": "everybody@gmail.com",
+    "avatar": "https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU="
+}
+
+####
+
+GET http://localhost:5050/authors
+
+####
+
+GET http://localhost:5050/authors/651472c0dfc4c1d05b2a004f
+
+####
+PUT http://localhost:5050/authors/update/65170b8fe31dc359439b15ad HTTP/1.1
+Content-Type: application/json
+
+{
+    "nome":"Frank",
+    "cognome":"Sinatra",
+    "dataDiNascita": "1700-04-06",
+    "email": "everybodysingandsong@gmail.com",
+    "avatar": "https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU="
+}
+
+####
+DELETE  http://localhost:5050/authors/delete/65170b8fe31dc359439b15ad 
