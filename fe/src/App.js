@@ -1,4 +1,7 @@
-import "./App.css";
+import React from "react";
+import NavBar from "./components/navbar/BlogNavbar";
+import MyFooter from "./components/footer/BlogFooter";
+import { myLinksFoot } from "./data/navlinks";
 
 function App() {
 	const handleGetPosts = async () => {
@@ -8,7 +11,12 @@ function App() {
 		const data = response.json();
 		console.log(data);
 	};
-	return <div className="App">test</div>;
+	return (
+		<>
+			<NavBar />
+			<MyFooter links={myLinksFoot} />
+		</>
+	);
 }
 
 export default App;
