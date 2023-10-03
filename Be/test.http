@@ -1,16 +1,19 @@
 GET http://localhost:5050
 
 ####
-
 GET http://localhost:5050/posts
+
+####
+
+GET http://localhost:5050/posts?page=2&pageSize=3
 
 ####
 POST http://localhost:5050/posts/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "category": "Spaziale",
-    "title": "Backend to the future",
+    "category": "Finanza",
+    "title": "Post Dodici",
     "readTime": {
         "value": 666,
         "unit": "views"
@@ -26,8 +29,8 @@ PATCH http://localhost:5050/posts/update/651706bb28ac97fe58a536a7
 Content-Type: application/json
 
 {
-    "category": "Spaziale modificato",
-    "title": "Backend to the future",
+    "category": "Spaziale",
+    "title": "Post Uno",
     "readTime": {
         "value": 700,
         "unit": "views"

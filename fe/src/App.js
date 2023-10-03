@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "./components/navbar/BlogNavbar";
 import MyFooter from "./components/footer/BlogFooter";
 import { myLinksFoot } from "./data/navlinks";
+import LatestPosts from "./components/latestPost/LatestPosts";
 
 function App() {
 	const handleGetPosts = async () => {
@@ -14,6 +15,7 @@ function App() {
 	return (
 		<>
 			<NavBar />
+			<LatestPosts />
 			<MyFooter links={myLinksFoot} />
 		</>
 	);

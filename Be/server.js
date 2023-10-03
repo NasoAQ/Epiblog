@@ -2,12 +2,17 @@ const express = require("express");
 const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
 const authorsRoute = require("./routes/authors");
+const cors = require("cors");
+const logger = require("./middleweares/logger");
 require("dotenv").config();
 
 const PORT = 5050;
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
+app.use(logger);
 
 //Routes
 app.use("/", postsRoute); //imposto la rotta da utilizzare dopo lo slash

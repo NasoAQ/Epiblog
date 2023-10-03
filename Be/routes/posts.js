@@ -5,10 +5,18 @@ const validatePost = require("../middleweares/validatePost");
 const posts = express.Router();
 
 posts.get("/posts", logger, async (req, res) => {
+	const { page = 1, pageSize = 3 } = req.query;
 	try {
-		const posts = await PostModel.find();
+		const posts = await PostModel.find()
+			.limit(pageSize)
+			.skip((page - 1) * pageSize);
+
+		const totalPosts = await PostModel.count();
 		res.status(200).send({
 			statusCode: 200,
+			currentPage: Number(page),
+			totalPages: Math.ceil(totalPosts / pageSize),
+			totalPosts,
 			posts,
 		});
 	} catch (e) {
