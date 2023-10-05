@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Card, Container, Image } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 import CardPost from "../cardPost/CardPost";
@@ -33,28 +33,6 @@ const LatestPosts = () => {
 		<Container className="mt-3">
 			<Row>
 				<CardPost posts={posts} />
-				{/* {posts &&
-					posts.posts?.map((post, i) => {
-						return (
-							<>
-								<Col key={i}>
-									<Card>
-										<Card.Img variant="top" src={post.cover} />
-										<Card.Body>
-											<Card.Title>{post.title}</Card.Title>
-											<Card.Text>{post.content}</Card.Text>
-										</Card.Body>
-										<Card.Footer>
-											<Image src={post.author.avatar} roundedCircle thumbnail />
-											<Card.Subtitle>{post.author.name}</Card.Subtitle>
-										</Card.Footer>
-									</Card>
-								</Col>
-
-								{/* <li key={i}> {post.title}</li>; 
-							</>
-						);
-					})} */}
 				<div className="mt-3">
 					<ResponsivePagination
 						current={currentPage}

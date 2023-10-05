@@ -23,7 +23,7 @@ const NavBar = () => {
 				>
 					{" "}
 					<PlusCircle className="mx-1" />
-					Nuovo Articolo
+					Nuovo Post
 				</Button>
 			</Container>
 		</Navbar>

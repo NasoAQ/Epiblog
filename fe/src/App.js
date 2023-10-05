@@ -1,8 +1,6 @@
 import React from "react";
-import NavBar from "./components/navbar/BlogNavbar";
-import MyFooter from "./components/footer/BlogFooter";
-import { myLinksFoot } from "./data/navlinks";
-import LatestPosts from "./components/latestPost/LatestPosts";
+import Home from "../src/pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 	const handleGetPosts = async () => {
@@ -14,9 +12,11 @@ function App() {
 	};
 	return (
 		<>
-			<NavBar />
-			<LatestPosts />
-			<MyFooter links={myLinksFoot} />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Home />} />
+				</Routes>
+			</BrowserRouter>
 		</>
 	);
 }
