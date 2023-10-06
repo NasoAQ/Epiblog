@@ -13,7 +13,9 @@ const LatestPosts = () => {
 
 	const getPosts = async () => {
 		try {
-			const response = await client.get(`/posts?page=${currentPage}`);
+			const response = await client.get(
+				`${process.env.REACT_APP_SERVER_BASE_URL}/posts?page=${currentPage}`
+			);
 			setPosts(response);
 		} catch (e) {
 			console.log(e);
@@ -29,18 +31,20 @@ const LatestPosts = () => {
 	}, [currentPage]);
 
 	return (
-		<Container className="mt-3">
-			<Row>
-				<CardPost posts={posts} />
-				<div className="mt-3">
-					<ResponsivePagination
-						current={currentPage}
-						total={posts && posts.totalPages}
-						onPageChange={handlePagination}
-					/>
+		<>
+			<Container className="d-flex mt-3">
+				<div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+					<CardPost posts={posts} />
 				</div>
-			</Row>
-		</Container>
+			</Container>
+			<div className="mt-3">
+				<ResponsivePagination
+					current={currentPage}
+					total={posts && posts.totalPages}
+					onPageChange={handlePagination}
+				/>
+			</div>
+		</>
 	);
 };
 

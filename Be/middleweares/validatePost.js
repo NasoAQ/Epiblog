@@ -24,9 +24,9 @@ const validatePost = (req, res, next) => {
 		errors.push("Unit must be a string");
 	}
 
-	if (typeof name !== "string") {
+	/* if (typeof name !== "string") {
 		errors.push("Name must be a string");
-	}
+	} */
 
 	/* if (typeof avatar !== "string") {
 		errors.push("Avatar must be a string");

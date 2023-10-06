@@ -14,7 +14,7 @@ const NavBar = () => {
 			className="blog-navbar bg-success-subtle" /* fixed="top" */
 		>
 			<Container className="justify-content-between">
-				<Navbar.Brand /* as={Link} to="/" */>
+				<Navbar.Brand className="d-flex" /* as={Link} to="/" */>
 					<ExplicitFill size={30} color="#198754" />
 					pi
 					<BootstrapFill size={30} color="#198754" />
@@ -31,7 +31,7 @@ const NavBar = () => {
 					/>
 				</Col>
 				<Button
-					/* as={Link} to="/new" */ className="blog-navbar-add-button bg-success"
+					/* as={Link} to="/new" */ className="d-flex align-items-center blog-navbar-add-button bg-success"
 				>
 					{" "}
 					<PlusCircle className="mx-1" />
