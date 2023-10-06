@@ -30,7 +30,6 @@ const CardPost = ({ posts }) => {
 									<Card.Text>{post.content}</Card.Text>
 								</Card.Body>
 								<Card.Footer className="text-muted">
-									{/* Created at {createDateStr} */}
 									{post.updateAt > post.createAt ? (
 										<>Update at: {updateDateStr}</>
 									) : (

@@ -29,7 +29,9 @@ const PostSchema = new mongoose.Schema(
 			},
 		},
 		author: {
-			name: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Author",
+			/* name: {
 				type: String,
 				required: true,
 			},
@@ -39,6 +41,7 @@ const PostSchema = new mongoose.Schema(
 				default:
 					"https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU=",
 			},
+		}, */
 		},
 		content: {
 			type: String,

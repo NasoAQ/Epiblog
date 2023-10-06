@@ -8,6 +8,7 @@ posts.get("/posts", logger, async (req, res) => {
 	const { page = 1, pageSize = 3 } = req.query;
 	try {
 		const posts = await PostModel.find()
+			.populate("author", "nome cognome avatar")
 			.limit(pageSize)
 			.skip((page - 1) * pageSize);
 

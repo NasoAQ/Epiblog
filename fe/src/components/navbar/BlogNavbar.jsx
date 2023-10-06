@@ -1,6 +1,11 @@
 import React from "react";
-import { Button, Container, Navbar } from "react-bootstrap";
-import { Explicit, Bootstrap, PlusCircle } from "react-bootstrap-icons";
+import { Button, Container, Navbar, Col } from "react-bootstrap";
+import {
+	ExplicitFill,
+	BootstrapFill,
+	PlusCircle,
+	ExclamationSquareFill,
+} from "react-bootstrap-icons";
 
 const NavBar = () => {
 	return (
@@ -10,14 +15,21 @@ const NavBar = () => {
 		>
 			<Container className="justify-content-between">
 				<Navbar.Brand /* as={Link} to="/" */>
-					{" "}
-					<Explicit size={30} />
+					<ExplicitFill size={30} color="#198754" />
 					pi
-					<Bootstrap size={30} />
-					log!
-					{/* <img className="blog-navbar-brand" alt="logo" src={logo} /> */}
+					<BootstrapFill size={30} color="#198754" />
+					log
+					<ExclamationSquareFill size={30} color="#198754" />
 				</Navbar.Brand>
-
+				<Col className="col-6">
+					<input
+						type="text"
+						placeholder="Search post..."
+						//value={searchText}
+						/* onChange={handleSearchChange} */
+						className="form-control my-3 text-center"
+					/>
+				</Col>
 				<Button
 					/* as={Link} to="/new" */ className="blog-navbar-add-button bg-success"
 				>

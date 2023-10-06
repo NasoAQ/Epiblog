@@ -3,6 +3,8 @@ import { Row, Container } from "react-bootstrap";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 import CardPost from "../cardPost/CardPost";
+import AxiosClient from "../../client/client";
+const client = new AxiosClient();
 
 const LatestPosts = () => {
 	const [currentPage, setCurrentPage] = useState(1);
@@ -11,11 +13,8 @@ const LatestPosts = () => {
 
 	const getPosts = async () => {
 		try {
-			const response = await fetch(
-				`${process.env.REACT_APP_SERVER_BASE_URL}/posts?page=${currentPage}`
-			);
-			const data = await response.json();
-			setPosts(data);
+			const response = await client.get(`/posts?page=${currentPage}`);
+			setPosts(response);
 		} catch (e) {
 			console.log(e);
 		}
