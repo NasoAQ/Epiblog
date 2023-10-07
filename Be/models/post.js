@@ -25,7 +25,7 @@ const PostSchema = new mongoose.Schema(
 			unit: {
 				type: String,
 				required: true,
-				enum: ["views"],
+				enum: ["views", "hours", "quarti"],
 			},
 		},
 		author: {

@@ -18,30 +18,24 @@ const CardPost = ({ posts }) => {
 						> */
 						<article
 							key={post._id}
-							className="flex max-w-xl flex-col items-start justify-between"
+							className="py-2 flex max-w-xl flex-col items-start justify-between border-green-600 border-b"
 						>
 							<img src={post.cover} alt="" className="bg-gray-50" />
 							<div className="flex items-center gap-x-4 text-xs">
-								<time className="text-gray-500">
-									{post.updateAt > post.createAt ? (
-										<>Update at: {updateDateStr}</>
-									) : (
-										<>Update at {createDateStr}</>
-									)}
-								</time>
 								<a
 									href="/"
-									className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+									className="relative mt-2 z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
 								>
 									{post.category}
 								</a>
+								<time className="text-gray-500">
+									{post.readTime.value} {post.readTime.unit}
+								</time>
 							</div>
 							<div className="group relative">
 								<h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-									<a href="/">
-										<span className="absolute inset-0"></span>
-										{post.title}
-									</a>
+									<span className="absolute inset-0"></span>
+									{post.title}
 								</h3>
 								<p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
 									{post.content}
@@ -54,12 +48,23 @@ const CardPost = ({ posts }) => {
 									className="h-10 w-10 rounded-full bg-gray-50"
 								/>
 								<div className="text-sm leading-6">
-									<p className="font-semibold text-gray-900">
-										<a href="/">
-											<span> {post.author.nome}</span>
-											<span>{post.author.cognome}</span>
+									<p className="m-0">
+										<a
+											className="no-underline font-semibold text-gray-900"
+											href="/"
+										>
+											<span>
+												{post.author.nome} {post.author.cognome}
+											</span>
 										</a>
 									</p>
+									<time className="text-gray-500">
+										{post.updateAt > post.createAt ? (
+											<>Update at: {updateDateStr}</>
+										) : (
+											<>Update at {createDateStr}</>
+										)}
+									</time>
 								</div>
 							</div>
 						</article>

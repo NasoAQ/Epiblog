@@ -35,7 +35,7 @@ const NavBar = () => {
 				>
 					{" "}
 					<PlusCircle className="mx-1" />
-					Nuovo Post
+					Crea Post
 				</Button>
 			</Container>
 		</Navbar>

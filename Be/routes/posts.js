@@ -4,6 +4,7 @@ const logger = require("../middleweares/logger");
 const validatePost = require("../middleweares/validatePost");
 const posts = express.Router();
 
+//Rotta per recuperare tutti posts
 posts.get("/posts", logger, async (req, res) => {
 	const { page = 1, pageSize = 3 } = req.query;
 	try {
@@ -28,6 +29,7 @@ posts.get("/posts", logger, async (req, res) => {
 	}
 });
 
+//Rotta per recuperare un singolo post
 posts.get("/posts/byId/:id", async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -45,6 +47,7 @@ posts.get("/posts/byId/:id", async (req, res) => {
 	} catch (e) {}
 });
 
+//Rotta per creare un post
 posts.post("/posts/create", validatePost, async (req, res) => {
 	const newPost = new PostModel({
 		category: req.body.category,
@@ -73,6 +76,7 @@ posts.post("/posts/create", validatePost, async (req, res) => {
 	}
 });
 
+//Rotta per modificare un post
 posts.patch("/posts/update/:postId", async (req, res) => {
 	const { postId } = req.params;
 	const postExist = await PostModel.findById(postId);
@@ -107,6 +111,7 @@ posts.patch("/posts/update/:postId", async (req, res) => {
 	}
 });
 
+//Rotta per cancellare un post
 posts.delete("/posts/delete/:postId", async (req, res) => {
 	const { postId } = req.params;
 	try {

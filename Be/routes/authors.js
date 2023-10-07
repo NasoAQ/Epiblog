@@ -2,6 +2,8 @@ const express = require("express");
 const authors = express.Router();
 const logger = require("../middleweares/logger");
 const Author = require("../models/author");
+const PostModel = require("../models/post");
+const posts = require("./posts");
 
 //Rotta per gli autori totali
 authors.get("/authors", async (req, res) => {
@@ -32,6 +34,33 @@ authors.get("/authors/:id", async (req, res) => {
 			statusCode: 200,
 			message: "Autore recuperato",
 			newAuthor,
+		});
+	} catch (e) {
+		res.status(500).send({
+			statusCode: 500,
+			message: "Errore interno",
+			error: e,
+		});
+	}
+});
+
+//Rotta per recuperare i tutti i posts di un autore
+authors.get("/authors/:id/posts", async (req, res) => {
+	try {
+		const idAuthor = req.params.id;
+		const authorsPosts = await PostModel.find({ author: idAuthor });
+
+		if (!authorsPosts || posts.length === 0) {
+			res.status(404).send({
+				statusCode: 404,
+				message: "Nessun post per questo autore",
+			});
+		}
+
+		res.status(200).send({
+			statusCode: 200,
+			message: "Post dell'autore recuperati",
+			authorsPosts,
 		});
 	} catch (e) {
 		res.status(500).send({
