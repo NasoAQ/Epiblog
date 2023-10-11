@@ -114,7 +114,7 @@ const PostModal = ({ close }) => {
 						/>
 
 						<input
-							placeholder="author"
+							placeholder="ID author"
 							className="w-[400px] p-1 rounded"
 							name="author"
 							type="text"

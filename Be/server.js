@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
 const authorsRoute = require("./routes/authors");
+const commentsRoute = require("./routes/comments");
 const cors = require("cors");
 const logger = require("./middleweares/logger");
 require("dotenv").config();
@@ -19,6 +20,7 @@ app.use(logger);
 //Routes
 app.use("/", postsRoute); //imposto la rotta da utilizzare dopo lo slash
 app.use("/", authorsRoute); // imposto la rotta degli autori
+app.use("/", commentsRoute); //imposto la rotta dei commenti
 
 mongoose.connect(process.env.MONGODB_URL, {
 	useNewUrlParser: true,

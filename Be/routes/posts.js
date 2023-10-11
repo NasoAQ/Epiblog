@@ -89,6 +89,7 @@ posts.get("/posts", logger, async (req, res) => {
 		res.status(500).send({
 			statusCode: 500,
 			message: "Errore interno",
+			e,
 		});
 	}
 });
@@ -108,7 +109,13 @@ posts.get("/posts/byId/:id", async (req, res) => {
 			statusCode: 200,
 			post,
 		});
-	} catch (e) {}
+	} catch (e) {
+		res.status(500).send({
+			statusCode: 500,
+			message: "Errore interno",
+			e,
+		});
+	}
 });
 
 //Rotta per creare un post
