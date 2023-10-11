@@ -1,9 +1,8 @@
 import React from "react";
-import { Button, Container, Navbar, Col } from "react-bootstrap";
+import { Container, Navbar, Col } from "react-bootstrap";
 import {
 	ExplicitFill,
 	BootstrapFill,
-	PlusCircle,
 	ExclamationSquareFill,
 } from "react-bootstrap-icons";
 
@@ -30,13 +29,6 @@ const NavBar = () => {
 						className="form-control my-3 text-center"
 					/>
 				</Col>
-				<Button
-					/* as={Link} to="/new" */ className="d-flex align-items-center blog-navbar-add-button bg-success"
-				>
-					{" "}
-					<PlusCircle className="mx-1" />
-					Crea Post
-				</Button>
 			</Container>
 		</Navbar>
 	);

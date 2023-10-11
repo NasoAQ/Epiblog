@@ -1,8 +1,8 @@
 const validatePost = (req, res, next) => {
 	const errors = [];
 	const { category, title, cover, readTime, author, content } = req.body;
-	const { value, unit } = readTime;
-	const { name, avatar } = author;
+	/* const { value, unit } = readTime; */
+	/* const { name, avatar } = author; */
 
 	if (typeof category !== "string") {
 		errors.push("Category must be a string");
@@ -16,13 +16,13 @@ const validatePost = (req, res, next) => {
 		errors.push("Cover must be a string");
 	} */
 
-	if (typeof value !== "number") {
+	/* if (typeof value !== "number") {
 		errors.push("Value must be a number");
-	}
+	} */
 
-	if (typeof unit !== "string") {
+	/* if (typeof unit !== "string") {
 		errors.push("Unit must be a string");
-	}
+	} */
 
 	/* if (typeof name !== "string") {
 		errors.push("Name must be a string");

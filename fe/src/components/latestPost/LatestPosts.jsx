@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 import CardPost from "../cardPost/CardPost";

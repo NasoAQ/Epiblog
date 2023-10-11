@@ -3,6 +3,70 @@ const PostModel = require("../models/post");
 const logger = require("../middleweares/logger");
 const validatePost = require("../middleweares/validatePost");
 const posts = express.Router();
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+require("dotenv").config();
+const crypto = require("crypto");
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const cloudStorage = new CloudinaryStorage({
+	cloudinary: cloudinary,
+	params: {
+		folder: "public",
+		format: async (req, res) => "jpeg",
+		public_id: (req, file) => file.name,
+	},
+});
+
+const internalStorage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, "./public");
+	},
+	filename: (req, file, cb) => {
+		const uniqueSuffix = `${Date.now()}-${crypto.randomUUID()}`;
+
+		const fileExtension = file.originalname.split(".").pop();
+		cb(null, `${file.fieldname}-${uniqueSuffix}.${fileExtension}`);
+	},
+});
+
+const upload = multer({ storage: internalStorage });
+const cloudUpload = multer({ storage: cloudStorage });
+
+posts.post(
+	"/posts/cloudUpload",
+	cloudUpload.single("cover"),
+	async (req, res) => {
+		try {
+			res.status(200).json({ cover: req.file.path });
+		} catch (error) {
+			res.status(500).json({
+				statusCode: 500,
+				message: "Errore interno del server",
+			});
+		}
+	}
+);
+
+posts.post("/posts/upload", upload.single("cover"), async (req, res) => {
+	const url = `${req.protocol}://${req.get("host")}`;
+
+	try {
+		const imgUrl = req.file.filename;
+		res.status(200).json({ cover: `${url}/public/${imgUrl}` });
+	} catch (error) {
+		res.status(500).json({
+			statusCode: 500,
+			message: "Errore interno del server",
+		});
+	}
+});
 
 //Rotta per recuperare tutti posts
 posts.get("/posts", logger, async (req, res) => {
@@ -54,8 +118,8 @@ posts.post("/posts/create", validatePost, async (req, res) => {
 		title: req.body.title,
 		cover: req.body.cover,
 		readTime: {
-			value: Number(req.body.readTime.value),
-			unit: req.body.readTime.unit,
+			value: Number(req.body.readTime?.value),
+			unit: req.body.readTime?.unit,
 		},
 		author: req.body.author,
 		content: req.body.content,
