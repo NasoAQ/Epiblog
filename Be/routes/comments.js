@@ -74,4 +74,105 @@ comments.post("/posts/byId/:id", async (req, res) => {
 	}
 });
 
+//Rotta per cercare un singolo commento di un singolo post
+comments.get("/posts/byId/:id/comments/:commentId", async (req, res) => {
+	const { id, commentId } = req.params;
+	try {
+		const post = await postModel.findById(id);
+		if (!post) {
+			return res.status(404).json({
+				statusCode: 404,
+				message: "Post non trovato",
+			});
+		}
+		const comment = await commentModel.findOne({ _id: commentId, post: id });
+		console.log(comment);
+		if (!comment) {
+			return res.status(404).json({
+				statusCode: 404,
+				message: "Commento non trovato per questo post",
+			});
+		}
+		res.status(200).send({
+			statusCode: 200,
+			comment,
+		});
+	} catch (error) {
+		res.status(500).send({
+			statusCode: 500,
+			message: "Errore interno",
+			error,
+		});
+	}
+});
+
+//Rotta per cancellare un commento
+comments.delete("/posts/byId/:id/comments/:commentId", async (req, res) => {
+	const { id, commentId } = req.params;
+	try {
+		const post = await postModel.findById(id);
+		if (!post) {
+			return res.status(404).json({
+				statusCode: 404,
+				message: "Post non trovato",
+			});
+		}
+		const comment = await commentModel.findOne({ _id: commentId, post: id });
+		console.log(comment);
+		if (!comment) {
+			return res.status(404).json({
+				statusCode: 404,
+				message: "Commento non trovato per questo post",
+			});
+		}
+		await commentModel.findByIdAndDelete(commentId);
+		res.status(200).send({
+			statusCode: 200,
+			message: "Commento eliminato correttamente",
+		});
+	} catch (error) {
+		res.status(500).send({
+			statusCode: 500,
+			message: "Errore interno",
+			error,
+		});
+	}
+});
+
+//Rotta per modificare un commento di un post
+comments.put("/posts/byId/:id/comments/:commentId", async (req, res) => {
+	const { id, commentId } = req.params;
+	try {
+		const post = await postModel.findById(id);
+		if (!post) {
+			return res.status(404).json({
+				statusCode: 404,
+				message: "Post non trovato",
+			});
+		}
+		const comment = await commentModel.findOne({ _id: commentId, post: id });
+		console.log(comment);
+		if (!comment) {
+			return res.status(404).json({
+				statusCode: 404,
+				message: "Commento non trovato per questo post",
+			});
+		}
+		const { Comment, rate } = req.body;
+
+		await commentModel.findByIdAndUpdate(commentId, { Comment, rate });
+		const updatedComment = await commentModel.findById(commentId);
+
+		res.status(200).send({
+			statusCode: 200,
+			updatedComment,
+		});
+	} catch (error) {
+		res.status(500).send({
+			statusCode: 500,
+			message: "Errore interno",
+			error,
+		});
+	}
+});
 module.exports = comments;
