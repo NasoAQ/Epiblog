@@ -10,6 +10,7 @@ function App() {
 		const data = response.json();
 		console.log(data);
 	};
+
 	return (
 		<>
 			<BrowserRouter>

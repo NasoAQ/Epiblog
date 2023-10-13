@@ -68,6 +68,45 @@ posts.post("/posts/upload", upload.single("cover"), async (req, res) => {
 	}
 });
 
+//Rotta per caricare una nuova immagine in un post specifico
+posts.patch(
+	"/posts/byId/:id/cover/",
+	cloudUpload.single("cover"),
+	async (req, res) => {
+		try {
+			const postId = req.params.id;
+			const post = await PostModel.findById(postId);
+
+			if (!post) {
+				return res.status(404).json({
+					statusCode: 404,
+					message: "Post non trovato",
+				});
+			}
+			const cloudinaryResponse = req.file;
+
+			if (!cloudinaryResponse) {
+				return res.status(400).json({
+					statusCode: 400,
+					message: "Upload immagine non riuscito",
+				});
+			}
+
+			post.cover = cloudinaryResponse.secure_url;
+			await post.save();
+			res.status(200).json({
+				statusCode: 200,
+				message: "Immagine caricata con successo",
+			});
+		} catch (error) {
+			res.status(500).json({
+				statusCode: 500,
+				message: "Errore interno del server",
+			});
+		}
+	}
+);
+
 //Rotta per recuperare tutti posts
 posts.get("/posts", logger, async (req, res) => {
 	const { page = 1, pageSize = 3 } = req.query;

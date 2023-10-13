@@ -9,7 +9,7 @@ const client = new AxiosClient();
 const LatestPosts = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [posts, setPosts] = useState([]);
-	console.log(posts);
+	//console.log(posts);
 
 	const getPosts = async () => {
 		try {

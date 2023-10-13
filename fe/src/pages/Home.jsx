@@ -5,6 +5,7 @@ import { PlusCircle } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
 import FormPost from "../components/formPost/FormPost";
 import PostModal from "../components/postModal/PostModal";
+import NewBlog from "../components/blog/NewBlog";
 
 const Home = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
