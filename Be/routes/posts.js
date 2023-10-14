@@ -26,13 +26,14 @@ const cloudStorage = new CloudinaryStorage({
 
 const internalStorage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, "./public");
+		cb(null, "./uploads"); //posizione di salvataggio
 	},
+	//dobbiamo risolvere il conflitto dei nomi, quindi assegniamo un nome univoco
 	filename: (req, file, cb) => {
-		const uniqueSuffix = `${Date.now()}-${crypto.randomUUID()}`;
+		const uniqueSuffix = `${Date.now()}-${crypto.randomUUID()}`; //crypto genera un randomID
 
-		const fileExtension = file.originalname.split(".").pop();
-		cb(null, `${file.fieldname}-${uniqueSuffix}.${fileExtension}`);
+		const fileExtension = file.originalname.split(".").pop(); //recuperiamo l'estensione
+		cb(null, `${file.fieldname}-${uniqueSuffix}.${fileExtension}`); //eseguiamo la callback con il titolo completo
 	},
 });
 
@@ -55,11 +56,11 @@ posts.post(
 );
 
 posts.post("/posts/upload", upload.single("cover"), async (req, res) => {
-	const url = `${req.protocol}://${req.get("host")}`;
+	const url = `${req.protocol}://${req.get("host")}`; //rendiamo dinamico il recupero dell'url
 
 	try {
-		const imgUrl = req.file.filename;
-		res.status(200).json({ cover: `${url}/public/${imgUrl}` });
+		const imgUrl = req.file.filename; //nella req è presente il file che riceviamo dal FE
+		res.status(200).json({ cover: `${url}/uploads/${imgUrl}` });
 	} catch (error) {
 		res.status(500).json({
 			statusCode: 500,
