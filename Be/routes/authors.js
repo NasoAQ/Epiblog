@@ -4,6 +4,7 @@ const logger = require("../middleweares/logger");
 const Author = require("../models/author");
 const PostModel = require("../models/post");
 const posts = require("./posts");
+const bcrypt = require("bcrypt");
 
 //Rotta per gli autori totali
 authors.get("/authors", async (req, res) => {
@@ -73,12 +74,16 @@ authors.get("/authors/:id/posts", async (req, res) => {
 
 //Rotta per la creazione di un autore
 authors.post("/authors/create", logger, async (req, res) => {
+	const salt = await bcrypt.genSalt(10); //imposto il livello di complessità
+	const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
 	const newAuthor = new Author({
 		nome: req.body.nome,
 		cognome: req.body.cognome,
 		dataDiNascita: req.body.dataDiNascita,
 		email: req.body.email,
 		avatar: req.body.avatar,
+		password: hashedPassword,
 	});
 	try {
 		const autoreSalvato = await newAuthor.save();

@@ -8,6 +8,7 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 require("dotenv").config();
 const crypto = require("crypto");
+const verifyToken = require("../middleweares/verifyToken");
 
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -109,7 +110,7 @@ posts.patch(
 );
 
 //Rotta per recuperare tutti posts
-posts.get("/posts", logger, async (req, res) => {
+posts.get("/posts", verifyToken, async (req, res) => {
 	const { page = 1, pageSize = 3 } = req.query;
 	try {
 		const posts = await PostModel.find()
