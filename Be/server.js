@@ -24,7 +24,7 @@ app.use(logger);
 app.use("/", postsRoute); //imposto la rotta da utilizzare dopo lo slash
 app.use("/", authorsRoute); // imposto la rotta degli autori
 app.use("/", commentsRoute); //imposto la rotta dei commenti
-app.use("/", emailsRoute); //imposto la rotta delle email
+//app.use("/", emailsRoute); //imposto la rotta delle email
 app.use("/", loginRoute); //imposto la rotta del login
 
 mongoose.connect(process.env.MONGODB_URL, {

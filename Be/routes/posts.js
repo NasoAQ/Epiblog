@@ -110,7 +110,7 @@ posts.patch(
 );
 
 //Rotta per recuperare tutti posts
-posts.get("/posts", verifyToken, async (req, res) => {
+posts.get("/posts", async (req, res) => {
 	const { page = 1, pageSize = 3 } = req.query;
 	try {
 		const posts = await PostModel.find()

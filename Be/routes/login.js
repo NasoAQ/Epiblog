@@ -27,6 +27,7 @@ login.post("/login", async (req, res) => {
 	//Generiamo il token con informazioni non private
 	const token = jwt.sign(
 		{
+			id: user._id,
 			nome: user.nome,
 			cognome: user.cognome,
 			dataDiNascita: user.dataDiNascita,

@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayouts from "../layouts/MainLayouts";
 import LatestPosts from "../components/latestPost/LatestPosts";
 import { PlusCircle } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
-import FormPost from "../components/formPost/FormPost";
 import PostModal from "../components/postModal/PostModal";
-import NewBlog from "../components/blog/NewBlog";
+import jwt_decode from "jwt-decode";
 
 const Home = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const token = localStorage.getItem("loggedInUser");
+
+	const decodedToken = jwt_decode(token);
+	const authorId = decodedToken.id;
 
 	const toggleModal = () => setIsModalOpen(!isModalOpen);
 	return (
@@ -22,7 +26,9 @@ const Home = () => {
 					<PlusCircle className="mx-1" />
 					Crea Post
 				</Button>
-				{isModalOpen && <PostModal close={setIsModalOpen} />}
+				{isModalOpen && (
+					<PostModal close={setIsModalOpen} authorId={authorId} />
+				)}
 				<LatestPosts />
 			</MainLayouts>
 		</>

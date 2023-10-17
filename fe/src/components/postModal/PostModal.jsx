@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AxiosClient from "../../client/client";
 const client = new AxiosClient();
 
-const PostModal = ({ close }) => {
+const PostModal = ({ close, authorId }) => {
 	const [file, setFile] = useState(null);
 	const [formData, setFormData] = useState({ value: "", unit: "" });
 
@@ -124,6 +124,7 @@ const PostModal = ({ close }) => {
 									author: e.target.value,
 								})
 							}
+							/* value={{ authorId }} */
 						/>
 						<input
 							placeholder="Read Time Value"

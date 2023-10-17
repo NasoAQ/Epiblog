@@ -1,6 +1,8 @@
 import React from "react";
 import Home from "../src/pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import ProtectedRoutes from "./middlewear/ProtectedRoutes";
 
 function App() {
 	const handleGetPosts = async () => {
@@ -15,7 +17,11 @@ function App() {
 		<>
 			<BrowserRouter>
 				<Routes>
-					<Route exact path="/" element={<Home />} />
+					<Route exact path="/" element={<Login />} />
+
+					<Route element={<ProtectedRoutes />}>
+						<Route path="/home" element={<Home />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</>

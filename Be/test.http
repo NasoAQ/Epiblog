@@ -19,7 +19,7 @@ Content-Type: application/json
         "value": 1.30,
         "unit": "hours"
     },
-    "author": "652992324f8bb87c0a6f5d41",
+    "author": "652ba0600f1582a5afe25f5c",
     "content": "WOWOWOWOW"
 }
 
@@ -47,7 +47,6 @@ Content-Type: application/json
 {
     "nome":"Mario",
     "cognome":"Rossi",
-    "avatar": "https://striveschool.ghost.io/content/images/2020/11/FBBRRZy5_400x400.jpg",
     "dataDiNascita": "1987-04-11",
     "email": "everybody@gmail.com",
     "password": "Lamiapassword"
