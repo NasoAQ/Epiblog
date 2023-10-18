@@ -91,7 +91,7 @@ GET http://localhost:5050/posts/byId/65204fb5c09140c9c1ee9772/comments
 GET http://localhost:5050/posts/byId/65204fb5c09140c9c1ee9772/comments/6527b3f2d75b0c20e77f917c
 
 ####
-POST http://localhost:5050/posts/byId/65204fb5c09140c9c1ee9772 HTTP/1.1
+POST http://localhost:5050/posts/byId/652e4d4e621879970fe87fe7 HTTP/1.1
 Content-Type: application/json
 
 {

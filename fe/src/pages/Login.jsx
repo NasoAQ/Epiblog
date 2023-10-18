@@ -47,6 +47,11 @@ function Login() {
 			console.log(error);
 		}
 	};
+
+	const redirectForLoginWithGithub = () => {
+		window.location.href = `${process.env.REACT_APP_SERVER_BASE_URL}/auth/github`;
+	};
+
 	return (
 		<div className="flex justify-center align-items-center h-screen">
 			<div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
@@ -112,12 +117,12 @@ function Login() {
 						</div>
 						<div className="flex items-center mb-6 -mt-4">
 							<div className="flex ml-auto">
-								<a
-									href="#"
-									className="inline-flex text-xs font-thin text-gray-500 sm:text-sm dark:text-gray-100 hover:text-gray-700 dark:hover:text-white"
+								<button
+									onClick={() => redirectForLoginWithGithub()}
+									className="py-2 px-4  bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
 								>
-									Forgot Your Password?
-								</a>
+									Login with github
+								</button>
 							</div>
 						</div>
 						<div className="flex w-full">

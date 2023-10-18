@@ -3,6 +3,7 @@ import Home from "../src/pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import ProtectedRoutes from "./middlewear/ProtectedRoutes";
+import Success from "./pages/Success";
 
 function App() {
 	const handleGetPosts = async () => {
@@ -21,6 +22,7 @@ function App() {
 
 					<Route element={<ProtectedRoutes />}>
 						<Route path="/home" element={<Home />} />
+						<Route path="/success" element={<Success />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Navbar, Col } from "react-bootstrap";
 import {
 	ExplicitFill,
@@ -6,7 +6,18 @@ import {
 	ExclamationSquareFill,
 } from "react-bootstrap-icons";
 
-const NavBar = () => {
+const NavBar = ({ posts, setFilteredPosts }) => {
+	const [searchText, setSearchText] = useState("");
+
+	const handleSearchChange = e => {
+		const text = e.target.value;
+		setSearchText(text);
+
+		const filteredPosts = posts.filter(post =>
+			post.title.toLowerCase().includes(text.toLowerCase())
+		);
+		setFilteredPosts(filteredPosts);
+	};
 	return (
 		<Navbar
 			expand="lg"
@@ -24,8 +35,8 @@ const NavBar = () => {
 					<input
 						type="text"
 						placeholder="Search post..."
-						//value={searchText}
-						/* onChange={handleSearchChange} */
+						value={searchText}
+						onChange={handleSearchChange}
 						className="form-control my-3 text-center"
 					/>
 				</Col>

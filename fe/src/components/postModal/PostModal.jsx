@@ -40,6 +40,7 @@ const PostModal = ({ close, authorId }) => {
 						value: parseFloat(formData.value),
 						unit: formData.unit,
 					},
+					author: authorId,
 				};
 				const response = await fetch("http://localhost:5050/posts/create", {
 					headers: {
@@ -113,7 +114,7 @@ const PostModal = ({ close, authorId }) => {
 							}
 						/>
 
-						<input
+						{/* <input
 							placeholder="ID author"
 							className="w-[400px] p-1 rounded"
 							name="author"
@@ -124,8 +125,8 @@ const PostModal = ({ close, authorId }) => {
 									author: e.target.value,
 								})
 							}
-							/* value={{ authorId }} */
-						/>
+							value={authorId}
+						/> */}
 						<input
 							placeholder="Read Time Value"
 							className="w-[400px] p-1 rounded"

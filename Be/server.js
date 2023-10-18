@@ -5,6 +5,7 @@ const authorsRoute = require("./routes/authors");
 const commentsRoute = require("./routes/comments");
 const emailsRoute = require("./routes/sendEmail");
 const loginRoute = require("./routes/login");
+const ghRoute = require("./routes/github");
 const cors = require("cors");
 const logger = require("./middleweares/logger");
 require("dotenv").config();
@@ -26,6 +27,7 @@ app.use("/", authorsRoute); // imposto la rotta degli autori
 app.use("/", commentsRoute); //imposto la rotta dei commenti
 //app.use("/", emailsRoute); //imposto la rotta delle email
 app.use("/", loginRoute); //imposto la rotta del login
+app.use("/", ghRoute);
 
 mongoose.connect(process.env.MONGODB_URL, {
 	useNewUrlParser: true,
