@@ -56,7 +56,7 @@ gh.get(
 		const user = req.user;
 
 		const token = jwt.sign(user, process.env.JWT_SECRET);
-		const redirectUrl = `http://localhost:3000/success?token=${encodeURIComponent(
+		const redirectUrl = `http://localhost:3000/?token=${encodeURIComponent(
 			token
 		)}`;
 		res.redirect(redirectUrl);

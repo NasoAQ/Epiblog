@@ -52,9 +52,9 @@ comments.post("/posts/byId/:id", async (req, res) => {
 			});
 		}
 
-		const { Comment, rate } = req.body;
+		const { comment, rate } = req.body;
 		const newComment = new commentModel({
-			Comment,
+			comment,
 			rate,
 			post: id,
 		});

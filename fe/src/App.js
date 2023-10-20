@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import ProtectedRoutes from "./middlewear/ProtectedRoutes";
 import Success from "./pages/Success";
+import Registration from "./pages/Registration";
 
 function App() {
 	const handleGetPosts = async () => {
@@ -19,6 +20,7 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route exact path="/" element={<Login />} />
+					<Route path="/registration" element={<Registration />} />
 
 					<Route element={<ProtectedRoutes />}>
 						<Route path="/home" element={<Home />} />

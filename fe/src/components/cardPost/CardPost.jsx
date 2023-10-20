@@ -1,5 +1,7 @@
 import React from "react";
 import "../cardPost/style.css";
+import Comment from "../comments/Comment";
+import CommentList from "../commentList/CommentList";
 
 const CardPost = ({ posts }) => {
 	return (
@@ -66,7 +68,9 @@ const CardPost = ({ posts }) => {
 										)}
 									</time>
 								</div>
+								<CommentList postId={post._id} />
 							</div>
+							<Comment postId={post._id} />
 						</article>
 						/* </div> */
 					);

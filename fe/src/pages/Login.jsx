@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	ExplicitFill,
 	BootstrapFill,
 	ExclamationSquareFill,
 } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
 	const [loginData, setLoginData] = useState({});
@@ -51,6 +51,15 @@ function Login() {
 	const redirectForLoginWithGithub = () => {
 		window.location.href = `${process.env.REACT_APP_SERVER_BASE_URL}/auth/github`;
 	};
+
+	useEffect(() => {
+		let params = new URLSearchParams(document.location.search);
+		const token = params.get("token");
+		if (token !== null) {
+			localStorage.setItem("loggedInUser", JSON.stringify(token));
+			navigate("/home");
+		}
+	}, []);
 
 	return (
 		<div className="flex justify-center align-items-center h-screen">
@@ -136,13 +145,12 @@ function Login() {
 					</form>
 				</div>
 				<div className="flex items-center justify-center mt-6">
-					<a
-						href="#"
-						target="_blank"
+					<Link
+						to="/registration"
 						className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
 					>
-						<span className="ml-2">You don&#x27;t have an account?</span>
-					</a>
+						<span className="ml-2">You don't have an account?</span>
+					</Link>
 				</div>
 			</div>
 		</div>

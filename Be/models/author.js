@@ -12,7 +12,7 @@ const authorSchema = new mongoose.Schema(
 		},
 		dataDiNascita: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		email: {
 			type: String,

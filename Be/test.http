@@ -47,7 +47,6 @@ Content-Type: application/json
 {
     "nome":"Mario",
     "cognome":"Rossi",
-    "dataDiNascita": "1987-04-11",
     "email": "everybody@gmail.com",
     "password": "Lamiapassword"
 }
