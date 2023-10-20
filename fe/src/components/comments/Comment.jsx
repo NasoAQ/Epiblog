@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 function Comment({ postId, onCommentAdded }) {
 	const [comment, setComment] = useState("");
@@ -10,12 +9,18 @@ function Comment({ postId, onCommentAdded }) {
 
 		try {
 			// Effettua una richiesta POST al server per creare un nuovo commento
-			const response = await axios.post(
-				`http://localhost:5050/posts/byId/${postId}`,
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVER_BASE_URL}/posts/byId/${postId}`,
 				{
-					comment,
-					rate,
-					post: postId,
+					headers: {
+						"Content-type": "application/json",
+					},
+					method: "POST",
+					body: JSON.stringify({
+						comment,
+						rate,
+						post: postId,
+					}),
 				}
 			);
 

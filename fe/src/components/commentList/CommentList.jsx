@@ -7,12 +7,12 @@ const CommentList = ({ postId }) => {
 	useEffect(() => {
 		const fetchComments = async () => {
 			try {
-				const response = await axios.get(
-					`http://localhost:5050/posts/byId/${postId}/comments`
+				const response = await fetch(
+					`${process.env.REACT_APP_SERVER_BASE_URL}/posts/byId/${postId}/comments`
 				);
-				const commentData = response.data;
-				setComments(commentData);
-				console.log(comments);
+				const data = await response.json();
+				setComments(data.comments);
+				console.log(data);
 			} catch (error) {
 				console.error("Errore nel recupero dei commenti", error);
 			}
@@ -22,13 +22,10 @@ const CommentList = ({ postId }) => {
 	}, [postId]);
 	return (
 		<div>
-			<h3>Commenti:</h3>
+			<strong>Commenti:</strong>
 			<ul>
-				{comments && comments.length > 0 ? (
-					comments.map(comment => <li key={comment._id}>{comment.comment}</li>)
-				) : (
-					<p>Nessun commento per questo post</p>
-				)}
+				{comments &&
+					comments.map(comment => <li key={comment._id}>{comment.comment}</li>)}
 			</ul>
 		</div>
 	);

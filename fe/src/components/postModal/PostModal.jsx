@@ -15,10 +15,13 @@ const PostModal = ({ close, authorId }) => {
 		const fileData = new FormData();
 		fileData.append("cover", cover);
 		try {
-			const response = await fetch("http://localhost:5050/posts/cloudUpload", {
-				method: "POST",
-				body: fileData,
-			});
+			const response = await fetch(
+				`${process.env.REACT_APP_SERVER_BASE_URL}/posts/cloudUpload`,
+				{
+					method: "POST",
+					body: fileData,
+				}
+			);
 			return await response.json();
 		} catch (error) {
 			console.log(error, "Errore in upload file");
@@ -42,13 +45,16 @@ const PostModal = ({ close, authorId }) => {
 					},
 					author: authorId,
 				};
-				const response = await fetch("http://localhost:5050/posts/create", {
-					headers: {
-						"Content-Type": "application/json",
-					},
-					method: "POST",
-					body: JSON.stringify(finalBody),
-				});
+				const response = await fetch(
+					`${process.env.REACT_APP_SERVER_BASE_URL}/posts/create`,
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+						method: "POST",
+						body: JSON.stringify(finalBody),
+					}
+				);
 
 				return response.json();
 			} catch (error) {

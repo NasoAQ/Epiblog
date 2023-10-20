@@ -58,15 +58,16 @@ function Registration() {
 						}),
 					}
 				);
+				const data = await loginResponse.json();
 
 				if (loginResponse.status === 200) {
 					// Salva il token nel localStorage o nello stato dell'app
-					const data = await loginResponse.json();
 					localStorage.setItem("loggedInUser", JSON.stringify(data.token));
 
 					// Esegui l'azione desiderata dopo il login, ad esempio reindirizzamento alla pagina principale.
 					navigate("/home");
 				}
+				setLoginData(data);
 			}
 		} catch (error) {
 			console.error("Errore durante la creazione dell'autore:", error);
