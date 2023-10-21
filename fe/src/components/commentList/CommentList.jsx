@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { StarFill } from "react-bootstrap-icons";
 
 const CommentList = ({ postId }) => {
 	const [comments, setComments] = useState([]);
@@ -21,11 +22,21 @@ const CommentList = ({ postId }) => {
 		fetchComments();
 	}, [postId]);
 	return (
-		<div>
+		<div className="py-2 w-100 flex flex-col justify-center border-green-600 border-t align-items-center">
 			<strong>Commenti:</strong>
 			<ul>
 				{comments &&
-					comments.map(comment => <li key={comment._id}>{comment.comment}</li>)}
+					comments.map(comment => (
+						<li
+							key={comment._id}
+							className="py-2 w-100 flex flex-col justify-center border-green-600 border-b align-items-center"
+						>
+							{comment.comment}{" "}
+							<div className="flex align-items-center">
+								{comment.rate} <StarFill color="gold" />
+							</div>
+						</li>
+					))}
 			</ul>
 		</div>
 	);

@@ -37,8 +37,8 @@ function Comment({ postId, onCommentAdded }) {
 		<div className="py-2 w-100 flex flex-col justify-center border-green-600 border-t align-items-center">
 			<h5>Lascia un commento</h5>
 			<form onSubmit={handleSubmit}>
-				<div>
-					<label>Commento:</label>
+				<div className="flex justify-center">
+					{/* <label>Commento:</label> */}
 					<textarea
 						className="border-green-600 border-1"
 						value={comment}
@@ -46,7 +46,7 @@ function Comment({ postId, onCommentAdded }) {
 						required
 					></textarea>
 				</div>
-				<div>
+				<div className="flex justify-center">
 					<label>Valutazione (da 1 a 5):</label>
 					<input
 						type="number"

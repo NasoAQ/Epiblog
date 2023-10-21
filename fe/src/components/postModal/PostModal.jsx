@@ -66,8 +66,8 @@ const PostModal = ({ close, authorId }) => {
 	};
 
 	return (
-		<div className="h-screen w-screen fixed top-1/2 flex items-center left-1/2 backdrop-blur-lg transform -translate-y-1/2 -translate-x-1/2 z-30 mymodal">
-			<div className="fixed z-10 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-100 shadow-xl w-fit min-w-[500px] h-fit p-4 rounded-xl hover:scale-110 duration-1000">
+		<div className="flex justify-center align-items-center h-screen">
+			<div className=" z-10 flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
 				<h1 className="font-bold text-4xl mb-4 text-green-700 text-center">
 					Aggiungi post
 				</h1>

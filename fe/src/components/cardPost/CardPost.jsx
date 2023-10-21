@@ -20,13 +20,13 @@ const CardPost = ({ posts }) => {
 						> */
 						<article
 							key={post._id}
-							className="py-2 flex max-w-xl flex-col items-start justify-between border-green-600 border-b"
+							className="py-2 flex max-w-md flex-col items-start justify-between border-green-600 border-b"
 						>
 							<img src={post.cover} alt="" className="bg-gray-50" />
 							<div className="flex items-center gap-x-4 text-xs">
 								<a
 									href="/"
-									className="relative mt-2 z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
+									className="relative mt-2 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
 								>
 									{post.category}
 								</a>
@@ -68,8 +68,8 @@ const CardPost = ({ posts }) => {
 										)}
 									</time>
 								</div>
-								<CommentList postId={post._id} />
 							</div>
+							<CommentList postId={post._id} />
 							<Comment postId={post._id} />
 						</article>
 						/* </div> */
